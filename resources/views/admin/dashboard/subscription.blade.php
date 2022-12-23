@@ -66,7 +66,7 @@
                     <h3>Método de Pago</h3>
                     <hr>
 
-                    <form action="#" method="POST" id="paymentForm">
+                    <form action="{{ route('pay') }}" method="POST" id="paymentForm">
                         @csrf
                         <div class="form-group">
                             <label>Token de autorización</label>
@@ -103,10 +103,41 @@
                             </div>
                         </div>
 
+                        <div class="row mt-3">
+                            <div class="col">
+                                <label>Selecciona un método de pago</label>
+                                <div class="form-group" id="toggler">
+                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                        @foreach ($paymentPlatforms as $paymentPlatform)
+                                            <label class="btn btn-outline-secondary rounded m-2 p-1" 
+                                              data-target="#{{ $paymentPlatform->name }}Collapse" 
+                                              data-toggle="collapse">
+                                                <input type="radio" name="payment_platform" value="{{ $paymentPlatform->id }}">
+                                                <img src="{{ asset($paymentPlatform->image) }}" class="img-thumbnail" >
+                                            </label>
+                                        @endforeach
+                                    </div>
+
+                                    @foreach ($paymentPlatforms as $paymentPlatform)
+                                    <div 
+                                      id="{{ $paymentPlatform->name }}Collapse"
+                                      class="collapse"
+                                      data-parent="#toggler">    
+                                        @includeIf('admin.components.' . strtolower($paymentPlatform->name) . '-collapse')
+                                    </div>
+                                    @endforeach
+
+                                </div>
+                            </div>
+
+                        </div>
+
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary btn-block">Suscribirse</button>
                         </div>
                         <input type="hidden" name="plan" id="plan" value=""/>
+                        <input type="hidden" name="currency" id="currency" value="MXN"/>
+
                     </form>
 
 				</div>
@@ -127,12 +158,34 @@
 @stop
 
 @section('js')
-    {{-- <script>
-        Swal.fire(
-            'Good job!',
-            'You clicked the button!',
-            'success'
-            )
+<script>
+    function SetPlanID(PlanID){
 
-    </script> --}}
+    const planInput = $('#plan');
+
+    planInput.attr('value',PlanID);
+
+    }
+    SetPlanID('plan_mensual');
+</script>
+
+@if (session('success'))
+<script>
+    Swal.fire(
+        'Good job!',
+        'You clicked the button!',
+        'success'
+        )
+</script>        
+@endif
+@if ($errors->any())
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!',
+            footer: '<a href>Why do I have this issue?</a>'
+            })
+    </script>
+@endif
 @stop

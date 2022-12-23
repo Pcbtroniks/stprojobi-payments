@@ -29,6 +29,11 @@ class CurrenciesTableSeeder extends Seeder
                 'iso_code' => 'GBP',
                 'symbol' => '£',
             ],
+            [
+                'name' => 'Mexican Peso',
+                'iso_code' => 'MXN',
+                'symbol' => '$',
+            ],
         ];
 
         foreach ($currencies as $currency) {

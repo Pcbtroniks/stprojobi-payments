@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\SubscriptionController;
+use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,4 +24,9 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Subscriptions
-Route::view('/dashboard/subscription', 'admin.dashboard.subscription')->name('susbscription');
+Route::get('/dashboard/subscription', [SubscriptionController::class, 'index'])->name('susbscription');
+
+// Payment
+Route::post('/payment/pay', [PaymentController::class, 'pay'])->name('pay');
+Route::get('/payment/approval', [PaymentController::class, 'approval'])->name('approval');
+Route::get('/payment/cancelled', [PaymentController::class, 'cancelled'])->name('cancelled');
