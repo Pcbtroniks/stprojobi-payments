@@ -29,5 +29,12 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
+    // Stripe payments
+    'stripe' => [
+        'base_uri' => env('STRIPE_BASE_URI'),
+        'secret' => env('STRIPE_SECRET'),
+        'key' => env('STRIPE_KEY'),
+        'class' => App\Service\StripeService::class,
+    ],
 
 ];
