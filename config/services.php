@@ -30,6 +30,13 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
     // Stripe payments
+    'paypal' => [
+        'base_uri' => env('PAYPAL_BASE_URI'),
+        'secret' => env('PAYPAL_SECRET'),
+        'client_id' => env('PAYPAL_CLIENT_ID'),
+        'class' => App\Service\PaypalService::class,
+    ],
+    // Stripe payments
     'stripe' => [
         'base_uri' => env('STRIPE_BASE_URI'),
         'secret' => env('STRIPE_SECRET'),

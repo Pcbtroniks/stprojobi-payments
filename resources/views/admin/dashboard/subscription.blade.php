@@ -102,6 +102,7 @@
                             <button type="submit" class="btn btn-primary btn-block">Suscribirse</button>
                         </div>
                         <input type="hidden" name="plan" id="plan" value=""/>
+                        <input type="hidden" name="value" id="value" value=""/>
                         <input type="hidden" name="currency" id="currency" value="MXN"/>
 
                     </form>
@@ -124,34 +125,69 @@
 @stop
 
 @section('js')
-<script>
-    function SetPlanID(PlanID){
-
-    const planInput = $('#plan');
-
-    planInput.attr('value',PlanID);
-
-    }
-    SetPlanID('plan_mensual');
-</script>
-
-@if (session('success'))
-<script>
-    Swal.fire(
-        'Good job!',
-        'You clicked the button!',
-        'success'
-        )
-</script>        
-@endif
-@if ($errors->any())
     <script>
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Something went wrong!',
-            footer: '<a href>Why do I have this issue?</a>'
-            })
+        const plans = {
+            'plan_mensual': 100.00,
+            'plan_anual': 800.00
+        }
+
+        function SetPlanValue(PlanValue){           
+            const planValue = $('#value');
+            planValue.attr('value',PlanValue);
+            console.log(planValue);
+        }
+
+        function SetPlanID(PlanID){
+
+            const planInput = $('#plan');
+
+            planInput.attr('value',PlanID);
+            SetPlanValue(plans[PlanID] ?? 100.00);
+        }
+
+        SetPlanID('plan_mensual');
     </script>
-@endif
-@stop
+
+    @if (session()->has('success'))
+    @foreach (session()->get('success') as $message)
+        
+    <script>
+        Swal.fire(
+            'Good job!',
+            '{{ $message }}',
+            'success'
+            )
+    </script>
+    @endforeach
+    @endif
+    @if ($errors->any())
+    @foreach ($errors->all() as $error)
+        
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: '{{ $error }}',
+                footer: '<a href>Why do I have this issue?</a>'
+                })
+        </script>
+    @endforeach
+    @endif
+
+
+    {{-- Stripe --}}
+    <script src="https://js.stripe.com/v3/"></script>
+
+    <script>
+        const stripe = Stripe('{{ config('services.stripe.key') }}')
+        const appearance = {
+            theme: 'night'
+        };
+
+        const elements = stripe.elements({locale: 'es', appearance});
+
+        const cardElement = elements.create('card');
+
+        cardElement.mount('#cardElement');
+    </script>
+@endsection

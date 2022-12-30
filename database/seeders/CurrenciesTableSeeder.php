@@ -30,6 +30,11 @@ class CurrenciesTableSeeder extends Seeder
                 'symbol' => '£',
             ],
             [
+                'name' => 'Japanese Yen',
+                'iso_code' => 'JPY',
+                'symbol' => '¥',
+            ],
+            [
                 'name' => 'Mexican Peso',
                 'iso_code' => 'MXN',
                 'symbol' => '$',
