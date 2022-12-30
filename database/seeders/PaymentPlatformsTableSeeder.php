@@ -15,6 +15,10 @@ class PaymentPlatformsTableSeeder extends Seeder
     public function run()
     {
         PaymentPlatform::create([
+            'name' => 'Conekta',
+            'image' => 'img/payment-platforms/conekta.png',
+        ]);
+        PaymentPlatform::create([
             'name' => 'PayPal',
             'image' => 'img/payment-platforms/paypal.jpg',
         ]);
