@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             CurrenciesTableSeeder::class,
             PaymentPlatformsTableSeeder::class,
+            PlanSeeder::class,
         ]);
     }
 }
