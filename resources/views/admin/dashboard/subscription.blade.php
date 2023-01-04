@@ -99,11 +99,13 @@
                         </div>
 
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary btn-block">Suscribirse</button>
+                            <button type="submit" class="btn btn-primary btn-block" id="payButton">Suscribirse</button>
                         </div>
                         <input type="hidden" name="plan" id="plan" value=""/>
                         <input type="hidden" name="value" id="value" value=""/>
                         <input type="hidden" name="currency" id="currency" value="MXN"/>
+                        <input type="hidden" name="payment_method" id="payment_method"/>
+                        
 
                     </form>
 
@@ -189,5 +191,55 @@
         const cardElement = elements.create('card');
 
         cardElement.mount('#cardElement');
+    </script>
+
+    <script>
+        const stripeID = 3;
+        const paymentForm = document.getElementById('paymentForm');
+
+        async function useStripe() {
+
+            const { paymentMethod, error } = await stripe.createPaymentMethod('card', cardElement, {
+                billing_details: {
+                    "name": "{{ auth()->user()->name }}",
+                    "email": "{{ auth()->user()->email }}"
+                }
+            });
+
+            if (error) {
+
+                Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: error.message
+                })
+                
+                return null;
+            } else {
+                const tokenInput = document.getElementById('payment_method');
+                tokenInput.setAttribute('value', paymentMethod.id);
+
+                paymentForm.submit();
+            }
+
+        }
+
+        paymentForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if(paymentForm.elements.payment_platform.value == stripeID) {
+
+                await useStripe();
+                return null;
+
+
+            } else {
+
+                paymentForm.submit();
+            
+            }
+
+        });
+
+
     </script>
 @endsection

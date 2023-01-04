@@ -34,14 +34,14 @@ return [
         'base_uri' => env('PAYPAL_BASE_URI'),
         'secret' => env('PAYPAL_SECRET'),
         'client_id' => env('PAYPAL_CLIENT_ID'),
-        'class' => App\Service\PaypalService::class,
+        'class' => App\Services\PaypalService::class,
     ],
     // Stripe payments
     'stripe' => [
         'base_uri' => env('STRIPE_BASE_URI'),
         'secret' => env('STRIPE_SECRET'),
         'key' => env('STRIPE_KEY'),
-        'class' => App\Service\StripeService::class,
+        'class' => App\Services\StripeService::class,
     ],
 
 ];
