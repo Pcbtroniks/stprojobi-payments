@@ -11,7 +11,7 @@
 				<div class="row mb-2">
 					<div class="col-sm-6">
 						<h1>
-                            Suscripción
+                            Suscripción {{ auth()->user()->hasActiveSubscription() ? 'Activa' : 'Inactiva' }}
                         </h1>
 					</div>
 					<div class="col-sm-6">
@@ -170,7 +170,6 @@
                 icon: 'error',
                 title: 'Oops...',
                 text: '{{ $error }}',
-                footer: '<a href>Why do I have this issue?</a>'
                 })
         </script>
     @endforeach
@@ -179,16 +178,22 @@
 
     {{-- Stripe --}}
     <script src="https://js.stripe.com/v3/"></script>
+    <script src="/js/CheckOut.js"></script>
 
     <script>
         const stripe = Stripe('{{ config('services.stripe.key') }}')
-        const appearance = {
-            theme: 'night'
-        };
 
-        const elements = stripe.elements({locale: 'es', appearance});
+        const elements = stripe.elements({locale: 'es'});
 
-        const cardElement = elements.create('card');
+        const cardElement = elements.create('card', {
+            style: {
+                iconStyle: 'solid',
+                base: {
+                color: '#32325d',
+            },
+            }
+        });
+
 
         cardElement.mount('#cardElement');
     </script>
@@ -242,4 +247,9 @@
 
 
     </script>
+@endsection
+
+@section('style')
+<style>
+</style>
 @endsection

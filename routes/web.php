@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\SubscriptionController;
+use App\Http\Controllers\SubscriptionController as SubscribeController;
 use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('planes');
 });
 
 Auth::routes();
@@ -24,8 +25,17 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Subscriptions
-Route::get('/dashboard/subscription', [SubscriptionController::class, 'index'])->name('susbscription');
+Route::get('/dashboard/subscription', [SubscriptionController::class, 'index'])->middleware('auth')->name('susbscription');
 
+Route::prefix('subscribe')
+        ->name('subscribe.')
+        ->group(function () {
+            Route::get('/', [SubscribeController::class, 'show'])->name('show');
+            Route::post('/', [SubscribeController::class, 'store'])->name('store');
+            Route::get('/approval', [SubscribeController::class, 'approval'])->name('approval');
+            Route::get('/cancelled', [SubscribeController::class, 'cancelled'])->name('cancelled');
+    
+});
 // Payment
 Route::post('/payment/pay', [PaymentController::class, 'pay'])->name('pay');
 Route::get('/payment/approval', [PaymentController::class, 'approval'])->name('approval');
