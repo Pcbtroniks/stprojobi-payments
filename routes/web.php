@@ -26,6 +26,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 // Subscriptions
 Route::get('/dashboard/subscription', [SubscriptionController::class, 'index'])->middleware('auth')->name('susbscription');
+Route::get('/dashboard/projobi', [SubscriptionController::class, 'projobi'])->middleware('auth')->name('projobi');
 
 Route::prefix('subscribe')
         ->name('subscribe.')
