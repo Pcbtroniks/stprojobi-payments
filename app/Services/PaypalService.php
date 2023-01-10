@@ -37,6 +37,11 @@ class PaypalService {
         return "Basic {$credentials}";
     }
 
+    public function handleSubscription()
+    {
+        dd($this->plans);
+    }
+
     public function createOrder($value, $currency)
     {
         return $this->makeRequest(
@@ -112,6 +117,33 @@ class PaypalService {
         return redirect()
             ->route('susbscription')
             ->withErrors('We cannot capture your payment. Try again, please');
+    }
+
+    public function createSubscription($planSlug, $name, $email)
+    {
+        return $this->makeRequest(
+            'POST',
+            '/v1/billing/subscriptions',
+            [],
+            [
+                'plan_id' => $this->plans[$planSlug],
+                'subscriber' => [
+                    'name' => [
+                        'given_name' => $name,
+                    ],
+                    'email_address' => $email
+                ],
+                'application_context' => [
+                    'brand_name' => config('app.name'),
+                    'shipping_preference' => 'NO_SHIPPING',
+                    'user_action' => 'SUBSCRIBE_NOW',
+                    'cancel_url' => route('subscribe.cancelled'),
+                    'return_url' => route('subscribe.approval', ['plan' => $planSlug]),
+                ]
+            ],
+            [],
+            $isJsonRequest = true,
+        );
     }
 
     public function resolveFactor($currency)

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Resolvers\PaymentPlatformResolver;
+use App\Services\PaypalService;
 
 class SubscriptionController extends Controller
 {
@@ -15,9 +16,9 @@ class SubscriptionController extends Controller
         $this->paymentPlatformResolver = $paymentPlatformResolver;
     }
 
-    public function show()
+    public function show(PaypalService $paypalService)
     {
-        return view('subscription.show');
+        return $paypalService->handleSubscription();
     }
 
     public function store(Request $request)

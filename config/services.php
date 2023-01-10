@@ -36,9 +36,9 @@ return [
         'client_id' => env('PAYPAL_CLIENT_ID'),
         'class' => App\Services\PaypalService::class,
         'plans' => [
-            'monthly' => env('PAYPAL_MONTHLY_PLAN'),
-            'yearly' => env('PAYPAL_YEARLY_PLAN'),
-            'x' => env('PAYPAL_X_PLAN'),
+            'plan_mensual' => env('PAYPAL_MONTHLY_PLAN'),
+            'plan_anual' => env('PAYPAL_YEARLY_PLAN'),
+            'plan_x' => env('PAYPAL_X_PLAN'),
         ]
     ],
     // Stripe payments

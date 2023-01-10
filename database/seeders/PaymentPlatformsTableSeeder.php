@@ -21,6 +21,7 @@ class PaymentPlatformsTableSeeder extends Seeder
         PaymentPlatform::create([
             'name' => 'PayPal',
             'image' => 'img/payment-platforms/paypal.jpg',
+            'subscription_enabled' => true
         ]);
         PaymentPlatform::create([
             'name' => 'Stripe',

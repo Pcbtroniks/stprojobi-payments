@@ -30,6 +30,7 @@ Route::get('/dashboard/projobi', [SubscriptionController::class, 'projobi'])->mi
 Route::get('/dashboard/{user}/{activate}', [SubscriptionController::class, 'activate'])->middleware('auth')->name('activate');
 Route::get('/projobi/{userID}/', [SubscriptionController::class, 'setProjobiUser'])->middleware('auth')->name('projobi.set.user');
 Route::get('/projobi/{userID}/get', [SubscriptionController::class, 'projobiUser'])->middleware('auth')->name('projobi.get.user');
+Route::get('/projobi/session/delete', [SubscriptionController::class, 'deleteProjobiSession'])->name('projobi.session.delete');
 
 Route::prefix('subscribe')
         ->name('subscribe.')

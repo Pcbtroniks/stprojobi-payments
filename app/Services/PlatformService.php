@@ -12,6 +12,12 @@ class PlatformService
         if (in_array($activate, $activateEnums))
         {
             $user->is_subscriber = $activate;
+
+            if(session()->has('projobi_user'))
+            {
+                session()->put('projobi_user.is_subscriber', $activate);
+            }
+
             return $user->save();
         } 
         else 

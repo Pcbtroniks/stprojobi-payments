@@ -16,9 +16,15 @@ class UserService
                     'id' => $user->id,
                     'name' => $user->name,
                     'email' => $user->email,
+                    'is_subscriber' => $user->is_subscriber
                 ],
             ]);
         }
+    }
+
+    public static function setSession($userID)
+    {
+        self::setUserSession($userID);
     }
 
     public function getUserSession()

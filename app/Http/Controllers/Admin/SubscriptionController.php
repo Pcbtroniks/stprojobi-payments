@@ -43,4 +43,9 @@ class SubscriptionController extends Controller
     {
         return $userService->setUserSession($userID);
     }
+
+    public function deleteProjobiSession(UserService $userService)
+    {
+        return $userService->deleteUserSession();
+    }
 }
