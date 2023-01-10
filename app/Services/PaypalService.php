@@ -10,12 +10,14 @@ class PaypalService {
     protected $baseUri;
     protected $secret;
     protected $client_id;
+    protected $plans;
 
     public function __construct()
     {
         $this->client_id = config('services.paypal.client_id');
         $this->baseUri = config('services.paypal.base_uri');
         $this->secret = config('services.paypal.secret');
+        $this->plans = config('services.paypal.plans');
     }
 
     public function resolveAuthorization(&$queryParams, &$formParams, &$headers)
