@@ -43,5 +43,9 @@ return [
         'key' => env('STRIPE_KEY'),
         'class' => App\Services\StripeService::class,
     ],
-
+    // Projobi payments
+    'projobi' => [
+        'base_uri' => env('PROJOBI_BASE_URI', 'https://projobi.com/'),
+        'secret' => env('PROJOBI_SECRET', 'secret'),
+    ],
 ];

@@ -27,6 +27,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // Subscriptions
 Route::get('/dashboard/subscription', [SubscriptionController::class, 'index'])->middleware('auth')->name('susbscription');
 Route::get('/dashboard/projobi', [SubscriptionController::class, 'projobi'])->middleware('auth')->name('projobi');
+Route::get('/dashboard/{user}/{activate}', [SubscriptionController::class, 'activate'])->middleware('auth')->name('activate');
+Route::get('/projobi/{userID}/', [SubscriptionController::class, 'setProjobiUser'])->middleware('auth')->name('projobi.set.user');
+Route::get('/projobi/{userID}/get', [SubscriptionController::class, 'projobiUser'])->middleware('auth')->name('projobi.get.user');
 
 Route::prefix('subscribe')
         ->name('subscribe.')
