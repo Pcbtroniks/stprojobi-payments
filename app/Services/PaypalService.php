@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Traits\ConsumeExternalServices;
+use Illuminate\Http\Request;
 
 class PaypalService {
     use ConsumeExternalServices;
@@ -37,9 +38,21 @@ class PaypalService {
         return "Basic {$credentials}";
     }
 
-    public function handleSubscription()
+    public function handleSubscription(Request $request)
     {
-        dd($this->plans);
+        $subscription = $this->createSubscription(
+            $request->plan,
+            $request->user()->name,
+            $request->user()->email
+        );
+
+        $subscriptionLinks = collect($subscription->links);
+
+        $approve = $subscriptionLinks->where('rel', 'approve')->first();
+
+        session()->put('subscriptionId', $subscription->id);
+
+        return redirect($approve->href);
     }
 
     public function createOrder($value, $currency)

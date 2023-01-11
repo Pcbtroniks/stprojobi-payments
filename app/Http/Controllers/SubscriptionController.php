@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PaymentPlatform;
+use App\Models\Plan;
 use Illuminate\Http\Request;
 use App\Resolvers\PaymentPlatformResolver;
-use App\Services\PaypalService;
 
 class SubscriptionController extends Controller
 {
@@ -16,9 +17,11 @@ class SubscriptionController extends Controller
         $this->paymentPlatformResolver = $paymentPlatformResolver;
     }
 
-    public function show(PaypalService $paypalService)
+    public function show()
     {
-        return $paypalService->handleSubscription();
+        $paymentPlatforms = PaymentPlatform::where('subscriptions_enabled', true)->get();
+        return view('admin.dashboard.subscriptions',
+            compact('paymentPlatforms'));
     }
 
     public function store(Request $request)
@@ -42,11 +45,22 @@ class SubscriptionController extends Controller
 
     public function approval()
     {
-        return view('subscription.approval');
+        $rules = [
+            'subscriptionId' => 'required',
+            'plan' => 'required|exists:plans,slug'
+        ];
+
+        request()->validate($rules);
+
+        $plan = Plan::where('slug', request()->plan)->firstOrFail();
+
+        $user = request()->user();
+
     }
 
     public function cancelled()
     {
-        return view('subscription.cancelled');
+        return redirect()->route('subscribe.show')
+            ->withErrors('Has cancelado la suscripción, puedes intentarlo de nuevo cuando quieras.');
     }
 }

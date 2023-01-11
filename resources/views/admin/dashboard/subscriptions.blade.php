@@ -66,7 +66,7 @@
                     <h3>Método de Pago</h3>
                     <hr>
 
-                    <form action="{{ route('pay') }}" method="POST" id="paymentForm">
+                    <form action="{{ route('subscribe.store') }}" method="POST" id="paymentForm">
                         @csrf
 
                         {{-- Payment platform select --}}
