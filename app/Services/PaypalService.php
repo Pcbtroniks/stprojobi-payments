@@ -55,6 +55,20 @@ class PaypalService {
         return redirect($approve->href);
     }
 
+    public function validateSubscription(Request $request)
+    {
+        if(session()->has('subscriptionId'))
+        {
+            $subscriptionID = session()->get('subscriptionId');
+
+            session()->forget('subscriptionId');
+
+            return $request->subscription_id == $subscriptionID;
+        }
+
+        return false;
+    }
+
     public function createOrder($value, $currency)
     {
         return $this->makeRequest(

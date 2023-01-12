@@ -47,6 +47,10 @@ return [
         'secret' => env('STRIPE_SECRET'),
         'key' => env('STRIPE_KEY'),
         'class' => App\Services\StripeService::class,
+        'plans' => [
+            'plan_mensual' => env('STRIPE_MONTHLY_PLAN'),
+            'plan_anual' => env('STRIPE_YEARLY_PLAN'),
+        ]
     ],
     // Projobi payments
     'projobi' => [

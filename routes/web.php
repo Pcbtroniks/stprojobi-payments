@@ -43,6 +43,7 @@ Route::prefix('subscribe')
 });
 
 Route::get('/handshake',  [SubscribeController::class, 'handShake'])->name('handshake')->middleware('projobi.user');
+Route::match(array('GET', 'POST'),'/webhook',  [SubscribeController::class, 'webhook'])->name('webhook');
 
 // Payment
 Route::post('/payment/pay', [PaymentController::class, 'pay'])->name('pay');
