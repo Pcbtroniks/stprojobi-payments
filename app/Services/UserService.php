@@ -37,7 +37,7 @@ class UserService
         return ProjobiUser::find($userID);
     }
 
-    public function deleteUserSession()
+    public static function deleteUserSession()
     {
         session()->forget('projobi_user');
     }

@@ -17,7 +17,7 @@ class ProjobiUser
      */
     public function handle(Request $request, Closure $next)
     {
-        if($this->validateHandShake($request) || auth()->check())
+        if($this->validateHandShake($request))
         {
             (new UserService)->setUserSession($request->user_id);
 

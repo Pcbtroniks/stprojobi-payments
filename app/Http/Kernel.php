@@ -64,6 +64,7 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'projobi.user' => \App\Http\Middleware\ProjobiUser::class,
+        'projobi.user.verify' => \App\Http\Middleware\VerifyProjobiUser::class,
         'unsubscribed' => \App\Http\Middleware\Unsubscribed::class,
     ];
 }

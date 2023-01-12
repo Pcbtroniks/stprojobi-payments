@@ -205,8 +205,8 @@
 
             const { paymentMethod, error } = await stripe.createPaymentMethod('card', cardElement, {
                 billing_details: {
-                    "name": "{{ auth()->user()->name }}",
-                    "email": "{{ auth()->user()->email }}"
+                    "name": "{{ session()->has('projobi_user') ? session()->has('projobi_user.name') : auth()->user()->name }}",
+                    "email": "{{ session()->has('projobi_user') ? session()->has('projobi_user.email') : auth()->user()->email }}"
                 }
             });
 

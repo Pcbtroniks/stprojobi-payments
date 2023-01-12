@@ -40,11 +40,22 @@ class PaypalService {
 
     public function handleSubscription(Request $request)
     {
-        $subscription = $this->createSubscription(
-            $request->plan,
-            $request->user()->name,
-            $request->user()->email
-        );
+        if(session()->has('projobi_user'))
+        {
+            $subscription = $this->createSubscription(
+                $request->plan,
+                session()->get('projobi_user.name'),
+                session()->get('projobi_user.email')
+            );
+        }
+        else
+        {
+            $subscription = $this->createSubscription(
+                $request->plan,
+                $request->user()->name,
+                $request->user()->email
+            );
+        }
 
         $subscriptionLinks = collect($subscription->links);
 
