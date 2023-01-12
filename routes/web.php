@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\SubscriptionController;
+use App\Http\Controllers\HandShakeController;
 use App\Http\Controllers\SubscriptionController as SubscribeController;
 use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Route;
@@ -42,7 +43,7 @@ Route::prefix('subscribe')
     
 });
 
-Route::get('/handshake',  [SubscribeController::class, 'handShake'])->name('handshake')->middleware('projobi.user');
+Route::get('/handshake',  [HandShakeController::class, 'handShake'])->name('handshake')->middleware('projobi.user');
 Route::match(array('GET', 'POST'),'/webhook',  [SubscribeController::class, 'webhook'])->name('webhook');
 
 // Payment

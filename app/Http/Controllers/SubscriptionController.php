@@ -66,24 +66,31 @@ class SubscriptionController extends Controller
 
 
                 $plan = Plan::where('slug', request()->plan)->firstOrFail();
-
-                $user = session()->has('projobi_user') 
-                        ? session()->get('projobi_user')
-                        : auth()->user();
-
-                $subscription = Subscription::create([
-                    'active_until' => now()->addDays($plan->duration_in_days),
-                    'user_id' => $user->id,
-                    'plan_id' => $plan->id,
-                ]);
-
-                /* Using Projobi */
-                if(session()->has('projobi_user'))
+                
+                if(session()->has('projobi_user') && session()->has('projobi_user.id'))
                 {
                     $projobiUser = ProjobiUser::find(session()->get('projobi_user.id'));
                     (new PlatformService)->activateSubscription($projobiUser, 'yes');
+
+                    if(config('app.env') === 'production')
+                    {
+                        return redirect('https://projobi.com/dashboard/suscripcion');
+                    } else {
+                        return redirect('http://projobi.test/dashboard/suscripcion');
+                    }
                 }
-                /* Stop using Projobi */
+                else
+                {
+                    $user = session()->has('projobi_user') 
+                    ? session()->get('projobi_user')
+                    : auth()->user();
+
+                    $subscription = Subscription::create([
+                        'active_until' => now()->addDays($plan->duration_in_days),
+                        'user_id' => $user->id,
+                        'plan_id' => $plan->id, 
+                    ]);
+                }
 
                 return redirect()->route('subscribe.show')
                     ->with(['success' => 'Has iniciado una suscripción nueva por ' . $plan->duration_in_days . ' días. Comienza a disfrutar de los beneficios de tu suscripción.']);
@@ -100,11 +107,6 @@ class SubscriptionController extends Controller
     {
         return redirect()->route('subscribe.show')
             ->withErrors('Has cancelado la suscripción, puedes intentarlo de nuevo cuando quieras.');
-    }
-
-    public function handShake()
-    {
-        return redirect()->route('subscribe.show');
     }
 
     public function webhook()

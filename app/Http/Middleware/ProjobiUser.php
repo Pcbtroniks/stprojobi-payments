@@ -23,8 +23,7 @@ class ProjobiUser
 
             return $next($request);
         }
-        return response()->json(['message' => 'Invalid HandShake', 'data' => $request->all(), 'secret' => config('services.projobi.secret')]);
-        return redirect()->back();
+        return redirect()->back()->with(['message' => 'Invalid HandShake', 'data' => $request->all(), 'secret' => config('services.projobi.secret')]);
     }
 
     public function validateHandShake(Request $request)
