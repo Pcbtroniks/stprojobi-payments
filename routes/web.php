@@ -41,6 +41,9 @@ Route::prefix('subscribe')
             Route::get('/cancelled', [SubscribeController::class, 'cancelled'])->name('cancelled');
     
 });
+
+Route::get('/handshake',  [SubscribeController::class, 'handShake'])->name('handshake')->middleware('projobi.user');
+
 // Payment
 Route::post('/payment/pay', [PaymentController::class, 'pay'])->name('pay');
 Route::get('/payment/approval', [PaymentController::class, 'approval'])->name('approval');

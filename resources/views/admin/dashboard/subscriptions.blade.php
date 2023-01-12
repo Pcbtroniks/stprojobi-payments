@@ -151,16 +151,15 @@
     </script>
 
     @if (session()->has('success'))
-    @foreach (session()->get('success') as $message)
         
     <script>
         Swal.fire(
             'Good job!',
-            '{{ $message }}',
+            '{{ session()->get('success') }}',
             'success'
             )
     </script>
-    @endforeach
+
     @endif
     @if ($errors->any())
     @foreach ($errors->all() as $error)
