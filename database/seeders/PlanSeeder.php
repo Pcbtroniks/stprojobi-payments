@@ -31,5 +31,11 @@ class PlanSeeder extends Seeder
             'price' => 89900,
             'duration_in_days' => 365,
         ]);
+
+        Plan::create([
+            'slug' => 'plan_x',
+            'price' => 900,
+            'duration_in_days' => 1,
+        ]);
     }
 }
