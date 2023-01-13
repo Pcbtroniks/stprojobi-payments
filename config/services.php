@@ -38,6 +38,7 @@ return [
         'plans' => [
             'plan_mensual' => env('PAYPAL_MONTHLY_PLAN'),
             'plan_anual' => env('PAYPAL_YEARLY_PLAN'),
+            'plan_semestral' => env('PAYPAL_SEMESTER_PLAN'),
             'plan_x' => env('PAYPAL_X_PLAN'),
         ]
     ],

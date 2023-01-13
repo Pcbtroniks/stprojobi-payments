@@ -35,7 +35,7 @@
 
                     <div class="container-fluid mb-4">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <h3 class="text-center">Suscripcion Mensual - <small>100 MXN al mes</small></h3>
 
                                 <p class="text-center"><b>Renovación automática</b></p>
@@ -44,11 +44,30 @@
                                     <div class="form-check">
                                         <input onchange="SetPlanID('plan_mensual')" class="form-check-input" type="radio" name="plan" value="plan_mensual" id="planMensual" checked>
                                         <label class="form-check-label" for="planMensual">Plan mensual</label>
+                                        <p class="form-check-label">30 Dias Gratis</p>
+                                        <p class="form-check-label">1 Anuncio</p>
+                                        <p class="form-check-label">Reporte de Visitas</p>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-4">
+                                <h3 class="text-center">Suscripcion Mensual - <small>100 MXN al mes</small></h3>
+
+                                <p class="text-center"><b>Renovación automática</b></p>
+
+                                <div class="form-group text-center">
+                                    <div class="form-check">
+                                        <input onchange="SetPlanID('plan_semestral')" class="form-check-input" type="radio" name="plan" value="plan_mensual" id="planMensual">
+                                        <label class="form-check-label" for="planSemestral">Plan Semestral</label>
+                                        <p class="form-check-label">30 Dias Gratis</p>
+                                        <p class="form-check-label">2 Anuncios</p>
+                                        <p class="form-check-label">Reporte de Visitas</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
                                 <h3 class="text-center">Suscripcion Anual - <small>800 MXN al año</small></h3>
 
                                 <p class="text-center"><b>Renovación automática</b></p>
@@ -57,6 +76,10 @@
                                     <div class="form-check">
                                         <input onchange="SetPlanID('plan_anual')" class="form-check-input" type="radio" name="plan" value="plan_anual" id="planAnual">
                                         <label class="form-check-label" for="planAnual">Plan anual</label>
+                                        <p class="form-check-label">30 Dias Gratis</p>
+                                        <p class="form-check-label">3 Anuncios</p>
+                                        <p class="form-check-label">Reporte de Visitas</p>
+                                        <p class="form-check-label">Ahorra $300</p>
                                     </div>
                                 </div>
                             </div>
