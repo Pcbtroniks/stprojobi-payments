@@ -300,42 +300,42 @@ return [
         [
             'text' => 'blog',
             'url'  => '#',
-            'can'  => 'manage-blog',
+            'can'  => 'projobi.admin',
         ],
         ['header' => 'PRINCIPAL'],
         [
             'text' => 'Dashboard',
-            'url'  => '#',
+            'url'  => 'https://projobi.com/dashboard',
             'icon' => 'fas fa-tachometer-alt',
         ],
-        ['header' => 'ADMINISTRAR CATEGORIAS'],
-        [
-            'text' => 'Categorias',
-            'url'  => '#',
-            'icon' => 'fas fa-square',
-        ],
-        [
-            'text' => 'Subcategorias',
-            'url'  => '#',
-            'icon' => 'fas fa-shapes',
-        ],
+        // ['header' => 'ADMINISTRAR CATEGORIAS'],
+        // [
+        //     'text' => 'Categorias',
+        //     'url'  => 'https://projobi.com/dashboard/categorias',
+        //     'icon' => 'fas fa-square',
+        // ],
+        // [
+        //     'text' => 'Subcategorias',
+        //     'url'  => 'https://projobi.com/dashboard/subcategorias',
+        //     'icon' => 'fas fa-shapes',
+        // ],
         ['header' => 'ADMINSTRAR PUBLICACIONES'],
         [
             'text' => 'Añadir Publicación',
-            'url'  => '#',
+            'url'  => 'https://projobi.com/dashboard/publicaciones/agregar',
             'icon' => 'far fa-paper-plane',
         ],
         [
             'text' => 'Mis Publicaciones',
-            'url'  => '#',
+            'url'  => 'https://projobi.com/dashboard/publicaciones',
             'icon' => 'far fa-newspaper',
         ],
-        ['header' => 'ADMINISTRAR USUARIOS'],
-        [
-            'text' => 'Usuarios registrados',
-            'url'  => '#',
-            'icon' => 'fas fa-users',
-        ],
+        // ['header' => 'ADMINISTRAR USUARIOS'],
+        // [
+        //     'text' => 'Usuarios registrados',
+        //     'url'  => 'https://projobi.com/dashboard/users',
+        //     'icon' => 'fas fa-users',
+        // ],
         ['header' => 'ADMINISTRAR CUENTA'],
         [
             'text' => 'Suscripción',
@@ -344,12 +344,12 @@ return [
         ],
         [
             'text' => 'Mi perfil',
-            'url'  => '#',
+            'url'  => 'https://projobi.com/dashboard/profile',
             'icon' => 'far fa-user-circle',
         ],
         [
             'text' => 'Cerrar sesión',
-            'url'  => 'logout',
+            'url'  => 'https://projobi.com/logout/',
             'icon' => 'fas fa-sign-out-alt',
         ],
     ],
