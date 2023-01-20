@@ -110,4 +110,11 @@ class SubscriptionController extends Controller
             ->withErrors('Has cancelado la suscripción, puedes intentarlo de nuevo cuando quieras.');
     }
 
+    public function planX()
+    {
+        return view('admin.planx.plan-x', [
+            'paymentPlatforms' => PaymentPlatform::where('subscriptions_enabled', true)->get(),
+        ]);
+    }
+
 }

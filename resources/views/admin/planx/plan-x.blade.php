@@ -36,15 +36,15 @@
                     <div class="container-fluid mb-4">
                         <div class="row">
                             <div class="col-md-4">
-                                <h3 class="text-center">Suscripcion Mensual - <small>100 MXN al mes</small></h3>
+                                <h3 class="text-center">Suscripcion Mensual - <small>12 MXN al mes</small></h3>
 
                                 <p class="text-center"><b>Renovación automática</b></p>
 
                                 <div class="form-group text-center">
                                     <div class="form-check">
                                         <input onchange="SetPlanID('plan_x')" class="form-check-input" type="radio" name="plan" value="plan_x" id="planX" checked>
-                                        <label class="form-check-label" for="plan">Plan mensual</label>
-                                        <p class="form-check-label">30 Dias Gratis</p>
+                                        <label class="form-check-label" for="plan">Plan X</label>
+                                        <p class="form-check-label">1 Dia Gratis</p>
                                         <p class="form-check-label">1 Anuncio</p>
                                         <p class="form-check-label">Reporte de Visitas</p>
                                     </div>
@@ -91,8 +91,8 @@
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary btn-block" id="payButton">Suscribirse</button>
                         </div>
-                        <input type="hidden" name="plan" id="plan" value=""/>
-                        <input type="hidden" name="value" id="value" value=""/>
+                        <input type="hidden" name="plan" id="plan" value="plan_x"/>
+                        <input type="hidden" name="value" id="value" value="12"/>
                         <input type="hidden" name="currency" id="currency" value="MXN"/>
                         <input type="hidden" name="payment_method" id="payment_method"/>
                         
@@ -120,7 +120,8 @@
     <script>
         const plans = {
             'plan_mensual': 100.00,
-            'plan_anual': 800.00
+            'plan_anual': 899.00
+            'plan_x': 12.00
         }
 
         function SetPlanValue(PlanValue){           

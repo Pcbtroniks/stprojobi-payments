@@ -39,6 +39,7 @@ Route::prefix('subscribe')
         ->group(function () {
             Route::get('/', [SubscribeController::class, 'show'])->name('show');
             Route::post('/', [SubscribeController::class, 'store'])->name('store');
+            Route::get('/plan-x', [SubscribeController::class, 'planX'])->name('plan.x');
             Route::get('/approval', [SubscribeController::class, 'approval'])->name('approval');
             Route::get('/cancelled', [SubscribeController::class, 'cancelled'])->name('cancelled');
     
