@@ -82,6 +82,6 @@ class WebhookController extends Controller
 
     public function removeExpiredSubscriptors()
     {
-        UserService::removeExpiredSubscriptions();
+        return UserService::removeExpiredSubscriptions();
     }
 }

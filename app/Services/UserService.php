@@ -58,6 +58,7 @@ class UserService
             $expiredSubscription->save();
         }
         self::log('Expired Subscriptions: ' . $expiredSubscriptions->count() . ' subscriptions removed');
+        return response(['message' => 'Expired Subscriptions: ' . $expiredSubscriptions->count() . ' subscriptions removed'], 200);
     }
 
     public static function log($message = 'No message')
