@@ -4,11 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\ProjobiUser;
 use App\Services\PlatformService;
+use App\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Psy\CodeCleaner\ReturnTypePass;
 
-use function PHPSTORM_META\type;
 
 class WebhookController extends Controller
 {
@@ -74,5 +73,15 @@ class WebhookController extends Controller
             return true;
         }
         return false;
+    }
+
+    public function getExpiredSubscriptors()
+    {
+        return UserService::getExpiredSubscriptions();
+    }
+
+    public function removeExpiredSubscriptors()
+    {
+        UserService::removeExpiredSubscriptions();
     }
 }
