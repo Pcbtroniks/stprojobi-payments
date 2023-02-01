@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Plan;
 use App\Models\ProjobiUser;
 use App\Services\PlatformService;
 use App\Services\UserService;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -23,14 +25,25 @@ class WebhookController extends Controller
             
             if($user)
             {
-                (new PlatformService)->deactivateSubscription(json_decode($input)->resource->id);
+                (new PlatformService)->suspendSubscription(json_decode($input)->resource->id);
             }
-        } elseif($this->isGoodPaypalEvent(json_decode($input)->event_type))
+        } 
+        elseif($this->isGoodPaypalEvent(json_decode($input)->event_type))
         {
             $user = ProjobiUser::where('subscription_id', json_decode($input)->resource->id)->first();
-            if($user && $user->is_subscriber == 'no')
+            if($user)
             {
                 (new PlatformService)->reactivateSubscription(json_decode($input)->resource->id);
+            }
+        } 
+        elseif($this->isPaymentCompletedPaypalEvent(json_decode($input)->event_type))
+        {
+            $user = ProjobiUser::where('subscription_id', json_decode($input)->resource->billing_agreement_id)->first();
+            /* $plan = Plan::where('slug', $user->plan_slug)->first(); */
+            /* return response()->json(['message' => 'Payment Completed', 'user' => $user, 'plan' => $plan, 'new_active_until' => Carbon::parse(json_decode($input)->create_time)->addDays($plan->duration_in_days)], 200); */
+            if($user)
+            {
+                (new PlatformService)->paymentCompleted(json_decode($input)->resource->billing_agreement_id, json_decode($input)->create_time);
             }
         }
 
@@ -73,6 +86,11 @@ class WebhookController extends Controller
             return true;
         }
         return false;
+    }
+
+    public function isPaymentCompletedPaypalEvent($type)
+    {
+        return $type == 'PAYMENT.SALE.COMPLETED';
     }
 
     public function getExpiredSubscriptors()

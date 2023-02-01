@@ -45,7 +45,7 @@ class UserService
 
     public static function getExpiredSubscriptions()
     {
-        return ProjobiUser::where('is_subscriber', 'yes')->whereDate('subscription_active_until', '<', now())->get();
+        return ProjobiUser::where('is_subscriber', 'yes')->whereDate('subscription_active_until', '<', now()->subDay())->get();
     }
 
     public static function removeExpiredSubscriptions()
