@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Storage;
 
 class UserService
 {
+
+    const BEFORE_EXPIRATION_DAYS = 3;
+
     public function setUserSession($userID)
     {
         $user = $this->validateUser($userID);
@@ -45,7 +48,7 @@ class UserService
 
     public static function getExpiredSubscriptions()
     {
-        return ProjobiUser::where('is_subscriber', 'yes')->whereDate('subscription_active_until', '<', now()->subDay())->get();
+        return ProjobiUser::where('is_subscriber', 'yes')->whereDate('subscription_active_until', '<=', now()->subDay(self::BEFORE_EXPIRATION_DAYS))->get();
     }
 
     public static function removeExpiredSubscriptions()
