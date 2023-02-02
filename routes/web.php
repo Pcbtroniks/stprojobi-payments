@@ -45,10 +45,14 @@ Route::prefix('subscribe')
     
 });
 
+
+// Webhook
 Route::get('/handshake',  [HandShakeController::class, 'handShake'])->name('handshake')->middleware('projobi.user');
 Route::match(array('GET', 'POST'),'/webhook',  [WebhookController::class, 'webhook'])->name('webhook');
 Route::match(array('GET', 'POST'),'/expired-subscriptors',  [WebhookController::class, 'getExpiredSubscriptors'])->name('expired.subscriptors');
 Route::match(array('GET', 'POST'),'/expired-subscriptors/cron',  [WebhookController::class, 'removeExpiredSubscriptors'])->name('expired.subscriptors.cron');
+Route::get('webhook/download/log',  [WebhookController::class, 'downloadLog'])->name('webhook.download.log');
+Route::get('webhook/pull/log',  [WebhookController::class, 'pullLog'])->name('webhook.pull.log');
 
 // Payment
 Route::post('/payment/pay', [PaymentController::class, 'pay'])->name('pay');

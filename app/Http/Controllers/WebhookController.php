@@ -102,4 +102,13 @@ class WebhookController extends Controller
     {
         return UserService::removeExpiredSubscriptions();
     }
+
+    public function downloadLog()
+    {
+        return Storage::download('webhook.log');
+    }
+    public function pullLog()
+    {
+        return response()->download(Storage::path('webhook.log'), 'webhook' . now()->toDateTimeString() . '.log')->deleteFileAfterSend();
+    }
 }
