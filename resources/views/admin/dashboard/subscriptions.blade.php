@@ -35,8 +35,11 @@
 
                     <div class="container-fluid mb-4">
                         <div class="row">
+                            <div class="mb-5">
+                                <h2>Gracias por interesarte en ser parte de projobi a continuación te mostramos nuestros planes, <span class="text-primary">recuerda que tu primer mes es GRATIS!</span></h2>
+                            </div>
                             <div class="col-md-4">
-                                <h3 class="text-center">Suscripcion Mensual - <small>100 MXN al mes</small></h3>
+                                <h3 class="text-center">Suscripcion Mensual <br> <small>99 MXN al mes</small></h3>
 
                                 <p class="text-center"><b>Renovación automática</b></p>
 
@@ -52,7 +55,7 @@
                             </div>
 
                             <div class="col-md-4">
-                                <h3 class="text-center">Suscripcion Mensual - <small>100 MXN al mes</small></h3>
+                                <h3 class="text-center">Suscripcion Semestral <br> <small>499 MXN al mes</small></h3>
 
                                 <p class="text-center"><b>Renovación automática</b></p>
 
@@ -63,12 +66,13 @@
                                         <p class="form-check-label">30 Dias Gratis</p>
                                         <p class="form-check-label">2 Anuncios</p>
                                         <p class="form-check-label">Reporte de Visitas</p>
+                                        <p class="form-check-label text-danger font-weight-bold"><u>Ahorra $100</u></p>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="col-md-4">
-                                <h3 class="text-center">Suscripcion Anual - <small>800 MXN al año</small></h3>
+                                <h3 class="text-center">Suscripcion Anual <br><small>899 MXN al año</small></h3>
 
                                 <p class="text-center"><b>Renovación automática</b></p>
 
@@ -79,7 +83,7 @@
                                         <p class="form-check-label">30 Dias Gratis</p>
                                         <p class="form-check-label">3 Anuncios</p>
                                         <p class="form-check-label">Reporte de Visitas</p>
-                                        <p class="form-check-label">Ahorra $300</p>
+                                        <p class="form-check-label text-danger font-weight-bold"><u>Ahorra $300</u></p>
                                     </div>
                                 </div>
                             </div>
