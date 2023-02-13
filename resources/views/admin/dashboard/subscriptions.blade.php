@@ -36,10 +36,10 @@
                     <div class="container-fluid mb-4">
                         <div class="row">
                             <div class="mb-5">
-                                <h2>Gracias por interesarte en ser parte de projobi a continuación te mostramos nuestros planes, <span class="text-primary">recuerda que tu primer mes es GRATIS!</span></h2>
+                                <h2>Gracias por interesarte en ser parte de projobi a continuación te mostramos nuestros planes. <span class="text-primary">¡Recuerda que tu primer mes es GRATIS!</span></h2>
                             </div>
                             <div class="col-md-4">
-                                <h3 class="text-center">Suscripcion Mensual <br> <small>99 MXN al mes</small></h3>
+                                <h3 class="text-center">Suscripción Mensual <br> <small>99 MXN al mes</small></h3>
 
                                 <p class="text-center"><b>Renovación automática</b></p>
 
@@ -55,14 +55,14 @@
                             </div>
 
                             <div class="col-md-4">
-                                <h3 class="text-center">Suscripcion Semestral <br> <small>499 MXN al mes</small></h3>
+                                <h3 class="text-center">Suscripción Semestral <br> <small>499 MXN cada 6 meses</small></h3>
 
                                 <p class="text-center"><b>Renovación automática</b></p>
 
                                 <div class="form-group text-center">
                                     <div class="form-check">
                                         <input onchange="SetPlanID('plan_semestral')" class="form-check-input" type="radio" name="plan" value="plan_mensual" id="planMensual">
-                                        <label class="form-check-label" for="planSemestral">Plan Semestral</label>
+                                        <label class="form-check-label" for="planSemestral">Plan semestral</label>
                                         <p class="form-check-label">30 Dias Gratis</p>
                                         <p class="form-check-label">2 Anuncios</p>
                                         <p class="form-check-label">Reporte de Visitas</p>
@@ -72,7 +72,7 @@
                             </div>
 
                             <div class="col-md-4">
-                                <h3 class="text-center">Suscripcion Anual <br><small>899 MXN al año</small></h3>
+                                <h3 class="text-center">Suscripción Anual <br><small>899 MXN al año</small></h3>
 
                                 <p class="text-center"><b>Renovación automática</b></p>
 
