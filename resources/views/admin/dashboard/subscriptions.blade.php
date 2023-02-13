@@ -36,7 +36,7 @@
                     <div class="container-fluid mb-4">
                         <div class="row">
                             <div class="mb-5">
-                                <h2>Gracias por interesarte en ser parte de projobi a continuación te mostramos nuestros planes. <span class="text-primary">¡Recuerda que tu primer mes es GRATIS!</span></h2>
+                                <h2>Gracias por interesarte en ser parte de Projobi a continuación te mostramos nuestros planes. <span class="text-primary">¡Recuerda que tu primer mes es GRATIS!</span></h2>
                             </div>
                             <div class="col-md-4">
                                 <h3 class="text-center">Suscripción Mensual <br> <small>99 MXN al mes</small></h3>
