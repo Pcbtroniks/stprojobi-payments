@@ -9,8 +9,6 @@ use App\Models\Subscription;
 use Illuminate\Http\Request;
 use App\Resolvers\PaymentPlatformResolver;
 use App\Services\PlatformService;
-use App\Services\UserService;
-use Illuminate\Support\Facades\Storage;
 
 class SubscriptionController extends Controller
 {
@@ -25,6 +23,12 @@ class SubscriptionController extends Controller
     public function show()
     {
         $paymentPlatforms = PaymentPlatform::where('subscriptions_enabled', true)->get();
+        // check if the user had a subscription before
+        if(session()->has('projobi_user') && session()->get('projobi_user.subscription_id') !== null){
+            return view('admin.dashboard.subscriptions-no-trial',
+            compact('paymentPlatforms'));
+        }
+        //
         return view('admin.dashboard.subscriptions',
             compact('paymentPlatforms'));
     }

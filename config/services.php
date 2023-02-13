@@ -40,6 +40,10 @@ return [
             'plan_anual' => env('PAYPAL_YEARLY_PLAN'),
             'plan_semestral' => env('PAYPAL_SEMESTER_PLAN'),
             'plan_x' => env('PAYPAL_X_PLAN'),
+            'plan_x_nt' => env('PAYPAL_X_PLAN_NO_TRIAL'),
+            'plan_mensual_nt' => env('PAYPAL_MONTHLY_PLAN_NO_TRIAL'),
+            'plan_anual_nt' => env('PAYPAL_YEARLY_PLAN_NO_TRIAL'),
+            'plan_semestral_nt' => env('PAYPAL_SEMESTER_PLAN_NO_TRIAL'),
         ]
     ],
     // Stripe payments

@@ -20,6 +20,7 @@ class UserService
                     'id' => $user->id,
                     'name' => $user->name,
                     'email' => $user->email,
+                    'subscription_id' => $user->subscription_id ?? null,
                     'is_subscriber' => $user->is_subscriber
                 ],
             ]);
