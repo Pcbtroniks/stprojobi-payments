@@ -55,6 +55,12 @@ return [
         'plans' => [
             'plan_mensual' => env('STRIPE_MONTHLY_PLAN'),
             'plan_anual' => env('STRIPE_YEARLY_PLAN'),
+            'plan_semestral' => env('STRIPE_SEMESTER_PLAN'),
+            'plan_x' => env('STRIPE_X_PLAN'),
+            'plan_x_nt' => env('STRIPE_X_PLAN_NO_TRIAL'),
+            'plan_mensual_nt' => env('STRIPE_MONTHLY_PLAN_NO_TRIAL'),
+            'plan_anual_nt' => env('STRIPE_YEARLY_PLAN_NO_TRIAL'),
+            'plan_semestral_nt' => env('STRIPE_SEMESTER_PLAN_NO_TRIAL'),
         ]
     ],
     // Projobi payments
