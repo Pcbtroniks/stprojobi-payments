@@ -11,12 +11,14 @@ class StripeService {
     protected $baseUri;
     protected $secret;
     protected $key;
+    protected $plans;
 
     public function __construct()
     {
         $this->baseUri = config('services.stripe.base_uri');
         $this->secret = config('services.stripe.secret');
         $this->key = config('services.stripe.key');
+        $this->plans = config('services.stripe.plans');
     }
 
     public function resolveAuthorization(&$queryParams, &$formParams, &$headers)
@@ -75,6 +77,59 @@ class StripeService {
             ->withErrors('We cannot retrieve your payment intent. Try again, please');
     }
 
+
+    public function handleSubscription(Request $request)
+    {
+
+        $customer = null;
+        if(session()->has('projobi_user'))
+        {
+            $customer = $this->createCustomer(
+                session()->get('projobi_user.name'),
+                session()->get('projobi_user.email'),
+                $request->payment_method
+            );
+            
+        }
+        else
+        {
+            $customer = $this->createCustomer(
+                $request->user()->name,
+                $request->user()->email,
+                $request->payment_method
+            );
+        }
+
+        $subscription = $this->createSubscription(
+            $customer->id,
+            $request->payment_method,
+            $this->plans[$request->plan],
+        );
+
+        if($subscription->status == 'active')
+        {
+            session()->put('subscriptionId', $subscription->id);
+            return redirect()->route('approval', [
+                'plan' => $request->plan,
+                'subscription_id' => $subscription->id,
+            ]);
+        }
+    }
+
+    public function validateSubscription(Request $request)
+    {
+        if(session()->has('subscriptionId'))
+        {
+            $subscriptionID = session()->get('subscriptionId');
+
+            session()->forget('subscriptionId');
+
+            return $request->subscription_id == $subscriptionID;
+        }
+
+        return false;
+    }
+
     public function createIntent($value, $currency, $paymentMethod = null, $confirm = 'manual')
     {
         return $this->makeRequest(
@@ -95,6 +150,38 @@ class StripeService {
         return $this->makeRequest(
             'POST',
             "/v1/payment_intents/{$paymentIntentId}/confirm"
+        );
+    }
+
+    public function createCustomer($name, $email, $paymentMethod)
+    {
+        return $this->makeRequest(
+            'POST',
+            '/v1/customers',
+            [],
+            [
+                'name' => $name,
+                'email' => $email,
+                'payment_method' => $paymentMethod
+            ]
+        );
+    }
+
+    public function createSubscription($customerId, $paymentMethod, $priceId)
+    {
+        return $this->makeRequest(
+            'POST',
+            '/v1/subscriptions',
+            [],
+            [
+                'customer' => $customerId,
+                'items' => [
+                    [
+                        'price' => $priceId
+                    ]
+                ],
+                'default_payment_method' => $paymentMethod
+            ]
         );
     }
 

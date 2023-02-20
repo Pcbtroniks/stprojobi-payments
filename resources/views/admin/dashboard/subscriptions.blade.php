@@ -204,7 +204,6 @@
 
     {{-- Stripe --}}
     <script src="https://js.stripe.com/v3/"></script>
-    <script src="/js/CheckOut.js"></script>
 
     <script>
         const stripe = Stripe('{{ config("services.stripe.key") }}')
@@ -227,13 +226,13 @@
     <script>
         const stripeID = 3;
         const paymentForm = document.getElementById('paymentForm');
-
+        console.log({{session()->has('projobi_user') ? session()->get('projobi_user.name') : auth()->user()->name }});
         async function useStripe() {
 
             const { paymentMethod, error } = await stripe.createPaymentMethod('card', cardElement, {
                 billing_details: {
-                    "name": "{{ session()->has('projobi_user') ? session()->has('projobi_user.name') : auth()->user()->name }}",
-                    "email": "{{ session()->has('projobi_user') ? session()->has('projobi_user.email') : auth()->user()->email }}"
+                    "name": "{{ session()->has('projobi_user') ? session()->get('projobi_user.name') : auth()->user()->name }}",
+                    "email": "{{ session()->has('projobi_user') ? session()->get('projobi_user.email') : auth()->user()->email }}"
                 }
             });
 
