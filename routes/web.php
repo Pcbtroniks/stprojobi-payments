@@ -45,6 +45,8 @@ Route::get('webhook/pull/log',  [WebhookController::class, 'pullLog'])->name('we
 
 // Webhook Stripe
 Route::match(array('GET', 'POST'), '/stripe/webhook', [StripeWebhookController::class, 'webhookStripe'])->name('webhook.stripe');
+Route::match(array('GET', 'POST'), '/stripe/webhook/download', [StripeWebhookController::class, 'download'])->name('webhook.stripe.download');
+Route::match(array('GET', 'POST'), '/stripe/webhook/pull', [StripeWebhookController::class, 'pull'])->name('webhook.stripe.pull');
 Route::get('/stripe/webhook/show', [StripeWebhookController::class, 'show'])->name('webhook.stripe.show');
 
 // Payment

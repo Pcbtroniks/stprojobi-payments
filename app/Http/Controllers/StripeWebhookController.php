@@ -32,6 +32,30 @@ class StripeWebhookController extends Controller
         }
     }
 
+    public function download()
+    {
+        if(Storage::exists('webhook-stripe.log'))
+        {
+            return Storage::download('webhook-stripe.log', 'webhook-stripe-' . now()->toDateTimeString() . '.log');
+        }
+        else
+        {
+            echo 'No hay datos';
+        }
+    }
+
+    public function pull()
+    {
+        if(Storage::exists('webhook-stripe.log'))
+        {
+            return response()->download(Storage::path('webhook-stripe.log'), 'webhook-stripe-' . now()->toDateTimeString() . '.log')->deleteFileAfterSend();
+        }
+        else
+        {
+            echo 'No hay datos';
+        }
+    }
+
     public function writeEventLog($data)
     {
         $log = $this->makeEventLog($data);
