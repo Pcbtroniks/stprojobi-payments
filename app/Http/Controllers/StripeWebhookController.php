@@ -16,10 +16,8 @@ class StripeWebhookController extends Controller
                 'message' => 'Data Recived', 
                 'writeEventLog' => $this->writeEventLog($data)
             ],
-             200
-        
+             200        
             );
-        $this->writeEventLog($data);
     }
 
     public function show()
