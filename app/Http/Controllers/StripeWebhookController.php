@@ -40,9 +40,10 @@ class StripeWebhookController extends Controller
 
     public function makeEventLog($data)
     {
+        $data = json_decode($data);
         $log =  '=================================================================================================================='. PHP_EOL .
-                date(DATE_RFC2822) . " Se ha Registrado un Nuevo Evento ". '"' . 'UNKNOWN' . '"' ." ID Evento [ID: UNKNOWN], (TYPE: UNKNOWN)" . PHP_EOL .
-                $data . PHP_EOL .
+                date(DATE_RFC2822) . " Se ha Registrado un Nuevo Evento ". '"' . $data->type . '"' ." ID Evento [ID: $data->id], (TYPE: $data->type)" . PHP_EOL .
+                json_encode($data) . PHP_EOL .
                 '=================================================================================================================='. PHP_EOL;
         return $log;
     }
