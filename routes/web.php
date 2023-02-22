@@ -8,17 +8,6 @@ use App\Http\Controllers\StripeWebhookController;
 use App\Http\Controllers\WebhookController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/', function () {
     return view('planes');
 });
@@ -46,7 +35,6 @@ Route::prefix('subscribe')
     
 });
 
-
 // Webhook
 Route::get('/handshake',  [HandShakeController::class, 'handShake'])->name('handshake')->middleware('projobi.user');
 Route::match(array('GET', 'POST'),'/webhook',  [WebhookController::class, 'webhook'])->name('webhook');
@@ -56,9 +44,8 @@ Route::get('webhook/download/log',  [WebhookController::class, 'downloadLog'])->
 Route::get('webhook/pull/log',  [WebhookController::class, 'pullLog'])->name('webhook.pull.log');
 
 // Webhook Stripe
-
-Route::match(array('GET', 'POST'), '/webhook/stripe', [StripeWebhookController::class, 'webhookStripe'])->name('webhook.stripe');
-Route::get('webhook/stripe/show', [StripeWebhookController::class, 'show'])->name('webhook.stripe.show');
+Route::match(array('GET', 'POST'), '/stripe/webhook', [StripeWebhookController::class, 'webhookStripe'])->name('webhook.stripe');
+Route::get('/stripe/webhook/show', [StripeWebhookController::class, 'show'])->name('webhook.stripe.show');
 
 // Payment
 Route::post('/payment/pay', [PaymentController::class, 'pay'])->name('pay');
