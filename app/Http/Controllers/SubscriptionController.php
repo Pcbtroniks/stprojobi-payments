@@ -35,7 +35,7 @@ class SubscriptionController extends Controller
 
     public function store(Request $request)
     {
-
+        //dd(request()->all());
         // Validations
         $rules = [
             'plan' => 'required|exists:plans,slug',
