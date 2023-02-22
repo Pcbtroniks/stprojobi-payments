@@ -11,6 +11,17 @@ class StripeWebhookController extends Controller
     public function webhookStripe()
     {
         $data = file_get_contents("php://input");
+        if($this->isBadStripeEvent(json_decode($data)->type))
+        {
+            $this->writeEventLog($data);
+            return response()->json(
+                [
+                    'message' => 'Data Recived', 
+                    'writeEventLog' => $this->writeEventLog($data)
+                ],
+                 200        
+                );
+        }
         return response()->json(
             [
                 'message' => 'Data Recived', 
@@ -70,5 +81,43 @@ class StripeWebhookController extends Controller
                 json_encode($data) . PHP_EOL .
                 '=================================================================================================================='. PHP_EOL;
         return $log;
+    }
+
+    protected function isBadStripeEvent($eventType)
+    {
+        $badEvents = [
+            'invoice.payment_failed',
+            'charge.failed',
+            'customer.subscription.deleted',
+            'payment_intent.payment_failed',
+        ];
+        if(in_array($eventType, $badEvents))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    protected function isGoodStripeEvent($eventType)
+    {
+        $goodEvents = [
+            'payment_intent.succeeded',
+            'charge.succeeded',
+        ];
+        if(in_array($eventType, $goodEvents))
+        {
+            return $eventType == 'invoice.payment_succeeded';
+        }
+        return false;
+    }
+
+    protected function handleEvent()
+    {
+
+    }
+
+    protected function reactivateSubscription()
+    {
+
     }
 }

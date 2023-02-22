@@ -62,19 +62,17 @@ class StripeService {
                 $name = auth()->user()->name;
                 $currency = strtoupper($confirmation->currency);
                 $amount = $confirmation->amount / $this->resolveFactor($currency);
-                return redirect()
-                    ->route('susbscription')
-                    ->withSuccess(['success' => "Thanks $name, we received your $amount$ payment"]);
+
+                return redirect()->route('subscribe.show')
+                    ->with(['success' => 'Has iniciado una suscripción nueva por. Comienza a disfrutar de los beneficios de tu suscripción.']);
             }
 
-            return redirect()
-                ->route('susbscription')
-                ->withErrors('We cannot confirm your payment. Try again, please');
+            return redirect()->route('subscribe.show')
+            ->withErrors('Lo sentimos, no hemos podido iniciar tu suscripción, por favor intenta de nuevo o ponte en contacto con nosotros para más información');
         }
 
-        return redirect()
-            ->route('susbscription')
-            ->withErrors('We cannot retrieve your payment intent. Try again, please');
+        return redirect()->route('subscribe.show')
+            ->withErrors('Lo sentimos, no hemos podido iniciar tu suscripción, por favor intenta de nuevo o ponte en contacto con nosotros para más información.');
     }
 
 
@@ -109,7 +107,7 @@ class StripeService {
         if($subscription->status == 'active')
         {
             session()->put('subscriptionId', $subscription->id);
-            return redirect()->route('approval', [
+            return redirect()->route('subscribe.approval', [
                 'plan' => $request->plan,
                 'subscription_id' => $subscription->id,
             ]);
