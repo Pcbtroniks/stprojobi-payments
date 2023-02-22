@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\SubscriptionController;
 use App\Http\Controllers\HandShakeController;
 use App\Http\Controllers\SubscriptionController as SubscribeController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\StripeWebhookController;
 use App\Http\Controllers\WebhookController;
 use Illuminate\Support\Facades\Route;
 
@@ -53,6 +54,11 @@ Route::match(array('GET', 'POST'),'/expired-subscriptors',  [WebhookController::
 Route::match(array('GET', 'POST'),'/expired-subscriptors/cron',  [WebhookController::class, 'removeExpiredSubscriptors'])->name('expired.subscriptors.cron');
 Route::get('webhook/download/log',  [WebhookController::class, 'downloadLog'])->name('webhook.download.log');
 Route::get('webhook/pull/log',  [WebhookController::class, 'pullLog'])->name('webhook.pull.log');
+
+// Webhook Stripe
+
+Route::match(array('GET', 'POST'), 'webhook/stripe', [StripeWebhookController::class, 'webhookStripe'])->name('webhook.stripe');
+Route::get('webhook/stripe/show', [StripeWebhookController::class, 'show'])->name('webhook.stripe.show');
 
 // Payment
 Route::post('/payment/pay', [PaymentController::class, 'pay'])->name('pay');
