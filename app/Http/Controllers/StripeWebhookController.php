@@ -24,7 +24,11 @@ class StripeWebhookController extends Controller
 
     public function show()
     {
-        echo Storage::get('webhook-stripe.log');
+        if(Storage::exists('webhook-stripe.log'))
+        {
+            echo Storage::get('webhook-stripe.log');
+        }
+        echo 'No hay datos';
     }
 
     public function writeEventLog($data)
