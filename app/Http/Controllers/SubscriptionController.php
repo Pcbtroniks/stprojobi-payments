@@ -75,7 +75,8 @@ class SubscriptionController extends Controller
                 if(session()->has('projobi_user') && session()->has('projobi_user.id'))
                 {
                     $projobiUser = ProjobiUser::find(session()->get('projobi_user.id'));
-                    (new PlatformService)->activateSubscription($projobiUser, 'yes', request()->subscription_id, request()->plan, now()->addDays($plan->duration_in_days));
+                    $subscriptionIdentifier = request()->has('customer_id') ? request()->customer_id : request()->subscription_id;
+                    (new PlatformService)->activateSubscription($projobiUser, 'yes', $subscriptionIdentifier, request()->plan, now()->addDays($plan->duration_in_days));
                     session()->invalidate();
                     if(config('app.env') === 'production')
                     {

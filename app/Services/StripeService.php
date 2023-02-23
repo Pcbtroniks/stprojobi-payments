@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Traits\ConsumeExternalServices;
+use GuzzleHttp\Exception\RequestException;
 use Illuminate\Http\Request;
 
 class StripeService {
@@ -98,6 +99,12 @@ class StripeService {
             );
         }
 
+        if(isset($customer->hasErrors))
+        {
+            return redirect()->route('subscribe.show')
+                ->withErrors($customer->getErrorMessage);
+        }
+        
         $subscription = $this->createSubscription(
             $customer->id,
             $request->payment_method,
@@ -109,6 +116,7 @@ class StripeService {
             session()->put('subscriptionId', $subscription->id);
             return redirect()->route('subscribe.approval', [
                 'plan' => $request->plan,
+                'customer_id' => $subscription->customer,
                 'subscription_id' => $subscription->id,
             ]);
         }
@@ -153,16 +161,31 @@ class StripeService {
 
     public function createCustomer($name, $email, $paymentMethod)
     {
-        return $this->makeRequest(
-            'POST',
-            '/v1/customers',
-            [],
-            [
-                'name' => $name,
-                'email' => $email,
-                'payment_method' => $paymentMethod
-            ]
-        );
+        $response = new \stdClass;
+        $response->hasErrors = false;
+        $response->getErrorMessage = '';
+        try {
+            return $this->makeRequest(
+                'POST',
+                '/v1/customers',
+                [],
+                [
+                    'name' => $name,
+                    'email' => $email,
+                    'payment_method' => $paymentMethod
+                ]
+            );
+        } catch (RequestException $badRequest) {
+            $response->hasErrors = true;
+            $response->getErrorMessage = json_decode($badRequest->getResponse()->getBody()->getContents())->error->message;
+            return $response;
+        
+        } catch (\Exception $e) {
+            $response->hasErrors = true;
+            $response->getErrorMessage = 'Lo sentimos, no hemos podido iniciar tu suscripción, por favor intenta de nuevo o ponte en contacto con nosotros para más información.';
+            return $response;
+        
+        }
     }
 
     public function createSubscription($customerId, $paymentMethod, $priceId)
