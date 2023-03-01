@@ -90,7 +90,7 @@
                         </div>
                     </div>
 
-                    <h3>Método de Pago</h3>
+                    <h2>Método de Pago</h2>
                     <hr>
 
                     <form action="{{ route('subscribe.store') }}" method="POST" id="paymentForm">
@@ -206,7 +206,7 @@
     <script src="https://js.stripe.com/v3/"></script>
 
     <script>
-        const stripe = Stripe('{{ config("services.stripe.key") }}')
+        const stripe = Stripe('{{ config("services.stripe.key") }}', {locale: 'es'})
 
         const elements = stripe.elements({locale: 'es'});
 
@@ -214,9 +214,23 @@
             style: {
                 iconStyle: 'solid',
                 base: {
-                color: '#32325d',
+                    iconColor: '#2f3542',
+                    color: '#2f3542',
+                    fontWeight: '500',
+                    fontFamily: 'Roboto, Open Sans, Segoe UI, sans-serif',        
+                    fontSmoothing: 'antialiased',
+                    ':-webkit-autofill': {
+                        color: '#fce883',
+                    },
+                    '::placeholder': {
+                        color: '#a4b0be',
+                    },
+                },
+                invalid: {
+                    iconColor: '#ff4757',
+                    color: '#ff4757',
+                },
             },
-            }
         });
 
 
@@ -226,13 +240,15 @@
     <script>
         const stripeID = 3;
         const paymentForm = document.getElementById('paymentForm');
-        console.log({{session()->has('projobi_user') ? session()->get('projobi_user.name') : auth()->user()->name }});
         async function useStripe() {
+
+            const userName = document.getElementById('stripe_user_name');
+            const userEmail = document.getElementById('stripe_user_email');
 
             const { paymentMethod, error } = await stripe.createPaymentMethod('card', cardElement, {
                 billing_details: {
-                    "name": "{{ session()->has('projobi_user') ? session()->get('projobi_user.name') : auth()->user()->name }}",
-                    "email": "{{ session()->has('projobi_user') ? session()->get('projobi_user.email') : auth()->user()->email }}"
+                    "name": userName,
+                    "email": userEmail
                 }
             });
 
@@ -272,9 +288,4 @@
 
 
     </script>
-@endsection
-
-@section('style')
-<style>
-</style>
 @endsection

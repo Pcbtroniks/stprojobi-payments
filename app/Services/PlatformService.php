@@ -15,6 +15,7 @@ class PlatformService
         {
             $user->is_subscriber = $activate;
             $user->subscription_id = $subscriptionID;
+            $user->subscription_status = 'active';
             $user->subscription_active_until = $subcriptionActiveUntil;
             $user->plan_slug = $plan_slug;
 
