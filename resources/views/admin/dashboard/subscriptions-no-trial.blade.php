@@ -220,7 +220,7 @@
                         color: '#fce883',
                     },
                     '::placeholder': {
-                        color: '#a4b0be',
+                        color: '#020024',
                     },
                 },
                 invalid: {
