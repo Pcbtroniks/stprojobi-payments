@@ -5,9 +5,11 @@ namespace App\Services;
 use App\Models\Plan;
 use App\Models\ProjobiUser;
 use Carbon\Carbon;
+use App\Traits\UseSubscription;
 
 class PlatformService
 {
+    use UseSubscription;
     public function activateSubscription(ProjobiUser $user, $activate = 'yes', $subscriptionID, $plan_slug, $subcriptionActiveUntil)
     {
         $activateEnums = ['yes', 'no'];
@@ -79,10 +81,9 @@ class PlatformService
         $plan = Plan::where('slug', $user->plan_slug)->first();
         if($user)
         {
+            return $this->useActivateSubscription($plan, $user);
             
             $user->subscription_status = 'active';
-
-
             $user->subscription_active_until = Carbon::parse($lastDate ?? now())->addDays($plan->duration_in_days);
 
             return $user->save();
