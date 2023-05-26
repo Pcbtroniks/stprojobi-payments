@@ -20,6 +20,7 @@ class PlatformService
             $user->subscription_status = 'active';
             $user->subscription_active_until = $subcriptionActiveUntil;
             $user->plan_slug = $plan_slug;
+            $user->post_limit = $this->getPostLimitByDurationDays($this->getPlanBySlug($plan_slug)->duration_in_days);
 
             if(session()->has('projobi_user'))
             {
@@ -61,6 +62,7 @@ class PlatformService
         {
             $user->is_subscriber = 'yes';
             $user->subscription_status = 'active';
+            $user->post_limit = $this->getPostLimitByDurationDays($this->getPlanBySlug($user->plan_slug)->duration_in_days);
 
             if(session()->has('projobi_user'))
             {
@@ -82,11 +84,6 @@ class PlatformService
         if($user)
         {
             return $this->useActivateSubscription($plan, $user);
-            
-            $user->subscription_status = 'active';
-            $user->subscription_active_until = Carbon::parse($lastDate ?? now())->addDays($plan->duration_in_days);
-
-            return $user->save();
         }
         else
         {

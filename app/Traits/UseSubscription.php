@@ -2,7 +2,7 @@
 
 namespace App\Traits;
 use Carbon\Carbon;
-
+use Illuminate\Support\Facades\DB;
 
 trait UseSubscription {
 
@@ -35,6 +35,11 @@ trait UseSubscription {
                 break;
         }
         return $postsLimit;
+    }
+
+    public function getPlanBySlug($plan_slug)
+    {
+        return DB::table('plans')->where('slug', $plan_slug)->first();
     }
 
 }
