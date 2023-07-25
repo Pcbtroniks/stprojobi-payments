@@ -87,9 +87,9 @@
                         </div>
                     </div>
 
-                    <h3>Método de Pago</h3>
                     <hr>
-
+                    <h3>Método de Pago</h3>
+                    <div class="separator py-3"></div>
                     <form action="{{ route('subscribe.store') }}" method="POST" id="paymentForm">
                         @csrf
 
@@ -97,7 +97,7 @@
                         <div class="row mt-3">
                             <div class="col">
                                 <div class="form-group" id="toggler">
-                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <div class="btn-group btn-group-toggle text-center" data-toggle="buttons">
                                         @foreach ($paymentPlatforms as $paymentPlatform)
                                             <label class="btn btn-outline-secondary rounded m-2 p-1" 
                                               data-target="#{{ $paymentPlatform->name }}Collapse" 
@@ -123,7 +123,7 @@
                         </div>
 
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary btn-block" id="payButton">Suscribirse</button>
+                            <button type="submit" class="btn btn-primary btn-block rounded-0" id="payButton">Suscribirse</button>
                         </div>
                         <input type="hidden" name="plan" id="plan" value=""/>
                         <input type="hidden" name="value" id="value" value=""/>
@@ -174,6 +174,7 @@
         SetPlanID('plan_mensual_nt');
     </script>
 
+    <!-- Success Alert -->
     @if (session()->has('success'))
         
     <script>
@@ -185,6 +186,8 @@
     </script>
 
     @endif
+
+    <!-- Errors Alert -->
     @if ($errors->any())
     @foreach ($errors->all() as $error)
         
@@ -199,7 +202,7 @@
     @endif
 
 
-    {{-- Stripe --}}
+    <!-- Stripe -->
     <script src="https://js.stripe.com/v3/"></script>
 
     <script>
@@ -211,7 +214,7 @@
             style: {
                 iconStyle: 'solid',
                 base: {
-                    iconColor: '#2f3542',
+                    iconColor: '#1e1d85',
                     color: '#2f3542',
                     fontWeight: '500',
                     fontFamily: 'Roboto, Open Sans, Segoe UI, sans-serif',        

@@ -215,7 +215,7 @@
                 iconStyle: 'solid',
                 base: {
                     iconColor: '#2f3542',
-                    color: '#2f3542',
+                    color: '#1e1d85',
                     fontWeight: '500',
                     fontFamily: 'Roboto, Open Sans, Segoe UI, sans-serif',        
                     fontSmoothing: 'antialiased',
