@@ -28,7 +28,7 @@
                 <div class="input-group-prepend">
                     <div class="input-group-text"><i class="fa fa-envelope"></i></div>
                 </div>
-                <input type="email" class="form-control" id="stripe_user_email" placeholder="Correo electrónico" required value="{{ session()->get('projobi_user.email') }}" disabled>
+                <input type="email" class="form-control" id="stripe_user_email" placeholder="Correo electrónico" required value="{{ session()->get('projobi_user.email') }}">
             </div>
         </div>
 
@@ -38,7 +38,7 @@
         </div>
     </div>
 
-    <div class="col-12 col-md-8 col-lg-6 py-5 px-md-5">
+    <div class="col-12 col-md-8 col-lg-6 py-md-5 px-md-5 border-left">
 
         <div class="mx-auto">
             <h3 class="text-center font-weight-bold mb-5">
@@ -47,34 +47,58 @@
         </div>
 
         <div class="d-flex justify-content-between mb-2">
-            <h4>
-                Plan Anual
-            </h4>
+            <h5>
+                Plan
+            </h5>
 
             <div class="d-flex justify-content-between align-items-baseline">
-                <h3>$899 </h3>
+                <h5>$1199</h5>
                  <span class="text-sm-left">MXN /anual</span>
             </div>
         </div>
 
         <div class="d-flex justify-content-between mb-2">
-            <h4>
+            <h5>
                 Anuncios
-            </h4>
+            </h5>
 
             <div class="d-flex justify-content-between align-items-baseline">
-                <h3>3&nbsp;</h3> 
+                <h4>3&nbsp;</h4> 
                  <span class="text-sm-left"> anuncio/s</span>
             </div>
         </div>
 
         <div class="d-flex justify-content-between mb-2">
-            <h4>
+            <h5>
                 Reporte de vistas
+            </h5>
+
+            <div class="d-flex justify-content-between align-items-baseline">
+                <h5>Incluido</h5>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-between mb-2">
+            <h5>
+                Descuento
+            </h5>
+
+            <div class="d-flex justify-content-between align-items-baseline">
+                <h3> -$300</h3><span class="text-sm-left">MXN</span>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="d-flex justify-content-between mb-2">
+            <h4>
+                <b>
+                    Total
+                </b>
             </h4>
 
             <div class="d-flex justify-content-between align-items-baseline">
-                <h3>Incluido&nbsp;</h3>
+            <h5> <del>$1199</del> &nbsp;</h5><h3><b> $899</b></h3><span class="text-sm-left">MXN</span>
             </div>
         </div>
 

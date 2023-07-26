@@ -60,7 +60,7 @@
 
                                 <div class="form-group text-center">
                                     <div class="form-check">
-                                        <input onchange="SetPlanID('plan_semestral_nt')" class="form-check-input" type="radio" name="plan" value="plan_mensual" id="planMensual">
+                                        <input onchange="SetPlanID('plan_semestral_nt')" class="form-check-input" type="radio" name="plan" value="plan_mensual" id="planSemestral">
                                         <label class="form-check-label" for="planSemestral">Plan semestral</label>
                                         <p class="form-check-label">2 Anuncios</p>
                                         <p class="form-check-label">Reporte de Visitas</p>
@@ -151,6 +151,8 @@
 @stop
 
 @section('js')
+    <script src="{{ asset('js/CheckOut.js') }}"></script>
+
     <script>
         const plans = {
             'plan_mensual': 100.00,
@@ -160,11 +162,10 @@
         function SetPlanValue(PlanValue){           
             const planValue = $('#value');
             planValue.attr('value',PlanValue);
-            console.log(planValue);
         }
 
         function SetPlanID(PlanID){
-
+            console.log(PlanID);
             const planInput = $('#plan');
 
             planInput.attr('value',PlanID);
