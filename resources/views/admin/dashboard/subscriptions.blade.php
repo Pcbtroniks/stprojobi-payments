@@ -105,7 +105,7 @@
                                             <label class="btn btn-outline-secondary rounded m-2 p-1" 
                                               data-target="#{{ $paymentPlatform->name }}Collapse" 
                                               data-toggle="collapse">
-                                                <input type="radio" name="payment_platform" value="{{ $paymentPlatform->id }}">
+                                                <input type="radio" name="payment_platform" value="{{ $paymentPlatform->id }}" @if($paymentPlatform->id == '3') checked @endif>
                                                 <img src="{{ asset($paymentPlatform->image) }}" class="img-thumbnail" style="width:100px">
                                             </label>
                                         @endforeach
@@ -114,7 +114,7 @@
                                     @foreach ($paymentPlatforms as $paymentPlatform)
                                     <div 
                                       id="{{ $paymentPlatform->name }}Collapse"
-                                      class="collapse"
+                                      class="{{ $paymentPlatform->id == '3' ? '' : 'collapse'}}"
                                       data-parent="#toggler">    
                                         @includeIf('admin.components.' . strtolower($paymentPlatform->name) . '-collapse')
                                     </div>
@@ -154,19 +154,31 @@
 @stop
 
 @section('js')
+<script src="{{ asset('js/CheckOut.js') }}"></script>
     <script>
         const plans = {
-            'plan_mensual': 100.00,
-            'plan_anual': 800.00
+            'plan_mensual': 99.00,
+            'plan_semestral': 99.00,
+            'plan_anual': 899.00
         }
 
-        function SetPlanValue(PlanValue){           
+        function SetPlanValue(PlanValue){       
             const planValue = $('#value');
             planValue.attr('value',PlanValue);
             console.log(planValue);
         }
 
         function SetPlanID(PlanID){
+
+                        
+            setPlanSelectedInformation(PlanID, {
+                'planPrice': 'selectedPlanPriceString',
+                'planSlug': 'selectedPlanSlugString',
+                'planAds': 'selectedPlanAdsString',
+                'planDiscount': 'selectedPlanDiscountString',
+                'planTotalPrice': 'selctedPlanTotalPriceString',
+                'planBeforeDiscountPrice': 'selectedPlanBeforeDiscountPrice',
+            });
 
             const planInput = $('#plan');
 

@@ -102,7 +102,7 @@
                                             <label class="btn btn-outline-secondary rounded m-2 p-1" 
                                               data-target="#{{ $paymentPlatform->name }}Collapse" 
                                               data-toggle="collapse">
-                                                <input type="radio" name="payment_platform" value="{{ $paymentPlatform->id }}">
+                                                <input type="radio" name="payment_platform" value="{{ $paymentPlatform->id }}" @if($paymentPlatform->id == '3') checked @endif>
                                                 <img src="{{ asset($paymentPlatform->image) }}" class="img-thumbnail" style="width:100px">
                                             </label>
                                         @endforeach
@@ -111,7 +111,7 @@
                                     @foreach ($paymentPlatforms as $paymentPlatform)
                                     <div 
                                       id="{{ $paymentPlatform->name }}Collapse"
-                                      class="collapse"
+                                      class="{{ $paymentPlatform->id == '3' ? '' : 'collapse'}}"
                                       data-parent="#toggler">    
                                         @includeIf('admin.components.' . strtolower($paymentPlatform->name) . '-collapse')
                                     </div>
@@ -155,8 +155,9 @@
 
     <script>
         const plans = {
-            'plan_mensual': 100.00,
-            'plan_anual': 800.00
+            'plan_mensual_nt': 99.00,
+            'plan_semestral_nt': 499.00,
+            'plan_anual_nt': 899.00
         }
 
         function SetPlanValue(PlanValue){           
@@ -165,7 +166,16 @@
         }
 
         function SetPlanID(PlanID){
-            console.log(PlanID);
+            
+            setPlanSelectedInformation(PlanID, {
+                'planPrice': 'selectedPlanPriceString',
+                'planSlug': 'selectedPlanSlugString',
+                'planAds': 'selectedPlanAdsString',
+                'planDiscount': 'selectedPlanDiscountString',
+                'planTotalPrice': 'selctedPlanTotalPriceString',
+                'planBeforeDiscountPrice': 'selectedPlanBeforeDiscountPrice',
+            });
+
             const planInput = $('#plan');
 
             planInput.attr('value',PlanID);

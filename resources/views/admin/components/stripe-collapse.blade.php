@@ -52,8 +52,8 @@
             </h5>
 
             <div class="d-flex justify-content-between align-items-baseline">
-                <h5>$1199</h5>
-                 <span class="text-sm-left">MXN /anual</span>
+                <h5 id="selectedPlanPriceString">$1199</h5>
+                 <span class="text-sm-left">MXN /<span id="selectedPlanSlugString">anual</span</span>
             </div>
         </div>
 
@@ -63,7 +63,7 @@
             </h5>
 
             <div class="d-flex justify-content-between align-items-baseline">
-                <h4>3&nbsp;</h4> 
+                <h4><span id="selectedPlanAdsString">3</span>&nbsp;</h4> 
                  <span class="text-sm-left"> anuncio/s</span>
             </div>
         </div>
@@ -84,7 +84,7 @@
             </h5>
 
             <div class="d-flex justify-content-between align-items-baseline">
-                <h3> -$300</h3><span class="text-sm-left">MXN</span>
+                <h3 id="selectedPlanDiscountString"> -$300</h3><span class="text-sm-left">MXN</span>
             </div>
         </div>
 
@@ -98,13 +98,13 @@
             </h4>
 
             <div class="d-flex justify-content-between align-items-baseline">
-            <h5> <del>$1199</del> &nbsp;</h5><h3><b> $899</b></h3><span class="text-sm-left">MXN</span>
+            <h5> <del id="selectedPlanBeforeDiscountPrice">$1199</del> &nbsp;</h5><h3><b id="selctedPlanTotalPriceString"> $899</b></h3><span class="text-sm-left">MXN</span>
             </div>
         </div>
 
     </div>
 
-    <div hidden class="col-12 col-md-8 col-lg-6 py-5">
+    <!-- <div hidden class="col-12 col-md-8 col-lg-6 py-5">
         <div>
             <div class="card border-primary rounded-0">
                 <div class="card-header p-0">
@@ -115,13 +115,13 @@
                 </div>
                 <div class="card-body p-3">
 
-                    <!--Body-->
+                    
                     <div class="form-group">
                         <div class="input-group mb-2">
                             <div class="input-group-prepend">
                                 <div class="input-group-text"><i class="fa-solid fa-ticket text-info">
 
-                                <svg class="text-info" fill="currentColor" color="currentColor" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M64 64C28.7 64 0 92.7 0 128v64c0 8.8 7.4 15.7 15.7 18.6C34.5 217.1 48 235 48 256s-13.5 38.9-32.3 45.4C7.4 304.3 0 311.2 0 320v64c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V320c0-8.8-7.4-15.7-15.7-18.6C541.5 294.9 528 277 528 256s13.5-38.9 32.3-45.4c8.3-2.9 15.7-9.8 15.7-18.6V128c0-35.3-28.7-64-64-64H64zm64 112l0 160c0 8.8 7.2 16 16 16H432c8.8 0 16-7.2 16-16V176c0-8.8-7.2-16-16-16H144c-8.8 0-16 7.2-16 16zM96 160c0-17.7 14.3-32 32-32H448c17.7 0 32 14.3 32 32V352c0 17.7-14.3 32-32 32H128c-17.7 0-32-14.3-32-32V160z"/></svg>
+                                <svg class="text-info" fill="currentColor" color="currentColor" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512"><path d="M64 64C28.7 64 0 92.7 0 128v64c0 8.8 7.4 15.7 15.7 18.6C34.5 217.1 48 235 48 256s-13.5 38.9-32.3 45.4C7.4 304.3 0 311.2 0 320v64c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V320c0-8.8-7.4-15.7-15.7-18.6C541.5 294.9 528 277 528 256s13.5-38.9 32.3-45.4c8.3-2.9 15.7-9.8 15.7-18.6V128c0-35.3-28.7-64-64-64H64zm64 112l0 160c0 8.8 7.2 16 16 16H432c8.8 0 16-7.2 16-16V176c0-8.8-7.2-16-16-16H144c-8.8 0-16 7.2-16 16zM96 160c0-17.7 14.3-32 32-32H448c17.7 0 32 14.3 32 32V352c0 17.7-14.3 32-32 32H128c-17.7 0-32-14.3-32-32V160z"/></svg>
 
                                 </i></div>
                             </div>
@@ -133,7 +133,7 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text"><i class="fa fa-envelope text-info"></i></div>
                             </div>
-                            <input type="email" class="form-control" id="nombre" name="email" placeholder="ejemplo@gmail.com" required>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="ejemplo@gmail.com" required>
                         </div>
                     </div>
 
@@ -144,7 +144,7 @@
 
             </div>
         </div>
-    </div>
+    </div> -->
 
 </div>
 
