@@ -39,7 +39,7 @@
                                 <h2>Gracias por interesarte en ser parte de Projobi a continuación te mostramos nuestros planes.</h2>
                             </div>
                             <div class="col-md-4">
-                                <h3 class="text-center">Suscripción Mensual <br> <small>99 MXN al mes</small></h3>
+                                <h3 class="text-center">Suscripción Mensual <br> <small>$99 MXN al mes</small></h3>
 
                                 <p class="text-center"><b>Renovación automática</b></p>
 
@@ -54,7 +54,7 @@
                             </div>
 
                             <div class="col-md-4">
-                                <h3 class="text-center">Suscripción Semestral <br> <small>499 MXN cada 6 meses</small></h3>
+                                <h3 class="text-center">Suscripción Semestral <br> <small>$499 MXN cada 6 meses</small></h3>
 
                                 <p class="text-center"><b>Renovación automática</b></p>
 
@@ -70,7 +70,7 @@
                             </div>
 
                             <div class="col-md-4">
-                                <h3 class="text-center">Suscripción Anual <br><small>899 MXN al año</small></h3>
+                                <h3 class="text-center">Suscripción Anual <br><small>$899 MXN al año</small></h3>
 
                                 <p class="text-center"><b>Renovación automática</b></p>
 
